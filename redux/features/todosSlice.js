@@ -2,8 +2,13 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 export const getTodos = createAsyncThunk('todos/getTodos', async (userId) => {
-  const { data } = await axios.get(`/api/${userId}`)
-  return data
+   
+    const { data } = await axios.get(`/api/${userId}`).catch(function (error) {
+      console.log(error.toJSON());
+    });
+    return data
+    
+
 })
 
 const initialState = {
