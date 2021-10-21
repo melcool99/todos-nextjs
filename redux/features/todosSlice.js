@@ -15,10 +15,13 @@ const todosSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
-    addTask: (state, action) => {},
+    addTodo: (state, {payload}) => {
+      payload.completed = false
+      state.todosList.push(payload)
+    },
     removeTodo: (state, { payload }) => {
       state.todosList = state.todosList.filter(
-        (todo, idx) => todo.id !== payload
+        (todo) => todo.id !== payload
       )
     },
     markCompleted: (state, { payload }) => {
@@ -41,6 +44,6 @@ const todosSlice = createSlice({
   },
 })
 
-export const { removeTodo, markCompleted } = todosSlice.actions
+export const { addTodo,removeTodo, markCompleted } = todosSlice.actions
 
 export default todosSlice.reducer

@@ -6,7 +6,6 @@ export const useTaskActions = () => {
 
   const finishTask = (e, idx) => {
     let taskStatus = e.target.checked
-
     dispatch(markCompleted({ idx: idx, completed: taskStatus }))
   }
 

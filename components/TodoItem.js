@@ -1,47 +1,41 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTaskActions } from '../hooks/useTaskActions'
 import { useRouter } from 'next/router'
 import { getTodos } from '../redux/features/todosSlice'
-
+import { Button,TodoContainer } from './Components.styles'
 const TodoItem = () => {
   const router = useRouter()
-
   const userId = router.query.id
-
   const dispatch = useDispatch()
-
   const { todosList, status } = useSelector((state) => state.todos)
+  const { finishTask, removeTask } = useTaskActions()
 
   useEffect(() => {
     dispatch(getTodos(userId))
   }, [userId, dispatch])
 
-  const { finishTask, removeTask } = useTaskActions()
-
   return (
     <div>
-      {status === 'Loading' && <h3>Loading...</h3>}
-      {status === 'Success' && todosList.length === 0 && (
-        <h3>Nothing to show here!</h3>
-      )}
-      {status === 'Failed' && <h3>Something went wrong</h3>}
-      {status === 'Success' && todosList.map((todo, idx) => (
-        <li key={idx} style={{ display: 'flex', alignItems: 'center' }}>
-          <p
-            style={{
-              color: todo.completed && 'blue',
-              textDecoration: todo.completed && 'line-through',
-            }}>
-            {idx  + 1}. {todo.title}
-          </p>
-          <input
-            type='checkbox'
-            checked={todo.completed}
-            onChange={(e) => finishTask(e, idx)}
-          />
-          <button onClick={() => removeTask(todo.id)}>X</button>
-        </li>
+      {todosList.map((todo, idx) => (
+      <TodoContainer  key={idx} style={{ display: 'flex', alignItems: 'center' }}>
+        <div
+          style={{
+            color: todo.completed && 'lightgray', fontStyle: todo.completed && 'italic', flex:1
+          }}>
+          <h4 >{todo.title.charAt(0).toUpperCase() + todo.title.slice(1)} </h4>
+        </div>
+          
+        <label htmlFor='check' >
+        <input
+          type='checkbox'
+          id='check'
+          checked={todo.completed}
+          onChange={(e) => finishTask(e, idx)}
+        /> 
+        </label>
+        <Button onClick={() => removeTask(todo.id)}>Remove</Button>
+          </TodoContainer>
       ))}
     </div>
   )
