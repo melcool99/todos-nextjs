@@ -1,20 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import AddTodo from './AddTodo'
+import {AddTodo} from './AddTodo'
 import TodoItem from './TodoItem'
-const TodoList = ({todos}) => {
 
 
+
+const TodoList = () => {
   return (
     <div>
-      <AddTodo/>
       <ul>
-        {todos.map((todo,idx) => (
-          <TodoItem key={idx} text={todo.title} id={todo.id} completed={todo.completed}></TodoItem>
-        ))}
+      <AddTodo/>
+      <TodoItem/>
       </ul>
     </div>
   )
 }
-
 
 export default TodoList

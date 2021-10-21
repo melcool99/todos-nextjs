@@ -1,0 +1,46 @@
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import axios from 'axios'
+
+export const getTodos = createAsyncThunk('todos/getTodos', async (userId) => {
+  const { data } = await axios.get(`/api/${userId}`)
+  return data
+})
+
+const initialState = {
+  status: null,
+  todosList: [],
+}
+
+const todosSlice = createSlice({
+  name: 'todos',
+  initialState,
+  reducers: {
+    addTask: (state, action) => {},
+    removeTodo: (state, { payload }) => {
+      state.todosList = state.todosList.filter(
+        (todo, idx) => todo.id !== payload
+      )
+    },
+    markCompleted: (state, { payload }) => {
+      const {idx, completed} = payload
+      state.todosList[idx].completed = completed
+    },
+  },
+  extraReducers: {
+    [getTodos.pending]: (state, action) => {
+      state.status = 'Loading'
+    },
+    [getTodos.fulfilled]: (state, { payload }) => {
+      state.status = 'Success'
+
+      state.todosList = payload
+    },
+    [getTodos.rejected]: (state, action) => {
+      state.status = 'Failed'
+    },
+  },
+})
+
+export const { removeTodo, markCompleted } = todosSlice.actions
+
+export default todosSlice.reducer

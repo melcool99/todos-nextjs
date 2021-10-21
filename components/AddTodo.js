@@ -1,24 +1,24 @@
-import React, {useRef, useState} from 'react'
+import React, { useRef, useState } from 'react'
 
 const AddTodo = () => {
-  const [text, setText] = useState('')
-  const inputRef = useRef()
+  // const [text, setText] = useState('')
+  // const inputRef = useRef()
 
-  const submitHandler = (event)=>{
-    event.preventDefault();
-    setText(inputRef.current.value)
-    
-  }
-  
-  console.log(text)
+  // // const submitHandler = (event)=>{
+  // //   event.preventDefault();
+  // //   setText(inputRef.current.value)
+
+  // // }
+
   return (
-    <form  onSubmit={submitHandler}>
-      <label htmlFor='input' id='input'>
+    <>
+    <p>Todo</p>
+      {/* <form>
         Add Todo
-      </label>
-      <input type='text' required id='title' ref={inputRef} />
-      <button>Add</button>
-    </form>
+        <input type='text' required id='title' ref={inputRef} />
+        <button>Add</button>
+      </form> */}
+    </>
   )
 }
 
