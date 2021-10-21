@@ -7,9 +7,9 @@ export const Button = styled.button`
   padding: 0.25em 1em;
   cursor:pointer;
   color:green;
-  &:hover {
-    color:#e09614;
-  };
+    &:hover {
+      color:#e09614;
+    };
 `;
 //
 
