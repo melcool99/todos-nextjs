@@ -1,8 +1,15 @@
 # Fetch Todos List from API with Next.js.
-##  API used = (https://jsonplaceholder.typicode.com/users/{ID}/todos) where the ID is dynamic based on user input.
-###
+
+
+### Packages Used :
+  - Axios for fetching data from API ( API used = (https://jsonplaceholder.typicode.com/users/{ID}/todos) where the ID is dynamic based on user input.)
+  - Redux Toolkit for setting global state.
+  - Styled Components for styling
 ## Getting Started
-First, run the development server:
+You can download this project and run it on your local computer using VsCode or the code editor of your choice.
+Firs, you must run npm install to get all the npm packages, used to  build the project,  installed.
+
+After, run the development server:
 
 ```bash
 npm run dev
