@@ -60,9 +60,10 @@ box-shadow: 2px 1px 0px ;
 //
 export const AppWrapper =styled.div`
 cursor:pointer;
+align-items:center;
+justify-content:center;
 display:flex;
 box-size:border-box;
-justify-content:center;
 align-items:center;
 font-style:bold;
 font-size: 18px;
